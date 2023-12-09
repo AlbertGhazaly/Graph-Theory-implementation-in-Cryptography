@@ -1,9 +1,11 @@
 #ifndef ADT_H
 #define ADT_H
 
+#include "boolean.h"
 typedef struct graph
 {
     int **matrix;
+    int len;
 } Graph;
 
 
@@ -34,7 +36,6 @@ typedef struct message
 {
     int len;
     graphList gList;
-    keyList kList;
 }Message;
 
 #define Next(x) x->next
@@ -42,7 +43,7 @@ typedef struct message
 #define key(x) x->key
 
 void createGraph(Graph* graf, int x);
-void keyAppend(keyList keyL, Key keyG);
-void graphAppend(graphList grafL, Graph grafVal);
-
+void keyAppend(keyList* keyL, Key keyG);
+void graphAppend(graphList* grafL, Graph grafVal);
+void displayGraph(Graph g);
 #endif
