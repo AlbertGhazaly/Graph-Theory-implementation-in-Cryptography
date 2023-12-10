@@ -63,12 +63,18 @@ void msgToGraf(Graph* graf, int len, int arr[7],keyList* kList){
     shuffle(order,len);
     int first = order[0];
     int last = order[len-1];
-    for (int i=0;i<len-1;i++){
-        graf->matrix[order[i]-1][order[i+1]-1] = countZero(arr,i+1);
-        graf->matrix[order[i+1]-1][order[i]-1] = countZero(arr,i+1);
+    if (len!=2){
+        for (int i=0;i<len-1;i++){
+            graf->matrix[order[i]-1][order[i+1]-1] = countZero(arr,i+1);
+            graf->matrix[order[i+1]-1][order[i]-1] = countZero(arr,i+1);
+        }
+        graf->matrix[first-1][last-1] = countZero(arr,len);
+        graf->matrix[last-1][first-1] = countZero(arr,len);
+    }else{
+        graf->matrix[first-1][last-1] = countZero(arr,1);
+        graf->matrix[last-1][first-1] = countZero(arr,2);
     }
-    graf->matrix[first-1][last-1] = countZero(arr,len);
-    graf->matrix[last-1][first-1] = countZero(arr,len);
+    
     Key koenci = {first,last};
     keyAppend(kList,koenci);
 }
@@ -78,7 +84,7 @@ Message encrypt(char text[], keyList* kList){
     int len = 0;
     for (;text[len]!='\0';len++);
     msg.len = len;
-    int xor = 85; //1010101
+    int xor = 127; //1111111
     srand((unsigned int)(time(NULL)) ^ getpid());
     for (int i=0;i<len;i++){
         char karakter = text[i] ^xor;
