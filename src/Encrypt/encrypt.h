@@ -1,6 +1,6 @@
 #ifndef ENCRYPT_H
 #define ENCRYPT_H
-#include "adt.h"
+#include "../ADT/adt.h"
 
 void charToBinary(char x, int res[7]);
 int countOne(int bin[7]);

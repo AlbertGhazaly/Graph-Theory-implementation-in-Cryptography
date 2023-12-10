@@ -1,10 +1,11 @@
-#include "encrypt.h"
-#include "decrypt.h"
+#include "./Encrypt/encrypt.h"
+#include "./Decrypt/decrypt.h"
 #include <stdio.h>
 
 
 int main(){
     char text[100];
+    printf("Text a message: ");
     scanf("%s",text);
     Message msg;
     keyList kList;
